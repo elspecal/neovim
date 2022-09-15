@@ -22,6 +22,7 @@ return require "packer".startup(function(use)
           "L3MON4D3/LuaSnip",
           requires = { "rafamadriz/friendly-snippets" },
         },
+        "onsails/lspkind.nvim",
       },
     },
     "folke/lua-dev.nvim",
@@ -31,6 +32,9 @@ return require "packer".startup(function(use)
     { "catppuccin/nvim", as = "catppuccin" },
     "folke/tokyonight.nvim",
     "f-person/auto-dark-mode.nvim",
+
+    -- indent lines
+    "lukas-reineke/indent-blankline.nvim",
 
     -- language parser
     {
@@ -51,6 +55,19 @@ return require "packer".startup(function(use)
         "kyazdani42/nvim-web-devicons",
         "MunifTanjim/nui.nvim",
       }
-    }
+    },
+    {
+      "nvim-telescope/telescope.nvim",
+      tag = "0.1.0",
+      requires = {
+        "nvim-lua/plenary.nvim",
+        "BurntSushi/ripgrep",
+        {
+          "nvim-telescope/telescope-fzf-native.nvim",
+          run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
+        },
+        "kyazdani42/nvim-web-devicons",
+      }
+    },
   }
 end)
