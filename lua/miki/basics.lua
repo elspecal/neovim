@@ -10,7 +10,7 @@ o.relativenumber = true
 o.timeoutlen = 400
 opt.clipboard:append { "unnamedplus" }
 o.termguicolors = true
-opt.completeopt = { "menu" , "menuone", "noselect" }
+opt.completeopt = { "menu", "menuone", "noselect" }
 o.autowriteall = true
 o.confirm = true
 o.cursorline = true
@@ -50,5 +50,5 @@ local builtins = {
 }
 
 for _, plugin in ipairs(builtins) do
-  vim.g["loaded_" .. plugin] = 1
+  g["loaded_" .. plugin] = 1
 end

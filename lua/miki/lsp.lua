@@ -49,8 +49,21 @@ local with_snippet_support = {
   html = true,
   jsonls = true,
 }
+
+local on_attach = function(client, _)
+  if client.server_capabilities.documentFormattingProvider then
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      callback = function()
+        vim.lsp.buf.format()
+      end,
+    })
+  end
+end
 local capabilities = cmp_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
-local options = { capabilities = capabilities }
+local options = {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
 
 for server, opts in pairs(servers) do
   opts = vim.tbl_deep_extend("force", {}, options, opts or {})
@@ -73,6 +86,14 @@ end
 local ok_luasnip, luasnip = pcall(require, "luasnip")
 if not ok_luasnip then
   print "failed to load luasnip"
+  return
+end
+
+require "luasnip.loaders.from_vscode".lazy_load()
+
+local ok_lspkind, lspkind = pcall(require, "lspkind")
+if not ok_lspkind then
+  print "failed to load the lspkind plugin"
   return
 end
 
@@ -117,5 +138,8 @@ cmp.setup {
     { name = "buffer" },
     { name = "path" },
     { name = "cmdline" },
+  },
+  formatting = {
+    format = lspkind.cmp_format { maxwidth = 50 },
   },
 }

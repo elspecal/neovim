@@ -5,9 +5,3 @@ au("TextYankPost", {
     vim.highlight.on_yank {}
   end,
 })
-
-au("BufWritePre", {
-  callback = function()
-    vim.lsp.buf.format()
-  end,
-})
