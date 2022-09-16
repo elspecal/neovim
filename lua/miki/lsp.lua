@@ -97,6 +97,13 @@ if not ok_lspkind then
   return
 end
 
+local ok_autopairs, autopairs = pcall(require, "nvim-autopairs.completion.cmp")
+if not ok_autopairs then
+  print "failed to load nvim-autopairs.completion.cmp"
+else
+  cmp.event:on("confirm_done", autopairs.on_confirm_done())
+end
+
 cmp.setup {
   snippet = {
     expand = function(args)

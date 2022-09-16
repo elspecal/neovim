@@ -56,6 +56,8 @@ return require "packer".startup(function(use)
         "MunifTanjim/nui.nvim",
       }
     },
+
+    -- fuzzy finder
     {
       "nvim-telescope/telescope.nvim",
       tag = "0.1.0",
@@ -69,5 +71,9 @@ return require "packer".startup(function(use)
         "kyazdani42/nvim-web-devicons",
       }
     },
+
+    -- auto-complete pair-wise symbols
+    "windwp/nvim-autopairs",
+    "windwp/nvim-ts-autotag",
   }
 end)
