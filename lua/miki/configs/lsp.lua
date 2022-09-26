@@ -44,6 +44,19 @@ local servers = {
   tsserver = {},
   yamlls = {},
 }
+
+local ok_schemastore, schemastore = pcall(require, "schemastore")
+if not ok_schemastore then
+  print("failed to load schema store")
+else
+  servers.jsonls.settings = {
+    json = {
+      schemas = schemastore.json.schemas(),
+      validate = { enable = true },
+    },
+  }
+end
+
 local with_snippet_support = {
   cssls = true,
   html = true,

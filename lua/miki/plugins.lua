@@ -108,5 +108,8 @@ return require("packer").startup(function(use)
         require("toggleterm").setup()
       end,
     },
+
+    -- JSON schemas
+    "b0o/schemastore.nvim",
   })
 end)
