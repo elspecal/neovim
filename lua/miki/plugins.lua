@@ -1,14 +1,30 @@
-return require "packer".startup(function(use)
-  use {
+return require("packer").startup(function(use)
+  use({
     -- plugin manager
     "wbthomason/packer.nvim",
 
     -- package manager
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
+    {
+      "williamboman/mason.nvim",
+      config = "require 'miki.configs.mason'",
+    },
+    {
+      "williamboman/mason-lspconfig.nvim",
+      after = "mason.nvim",
+      config = "require 'miki.configs.mason-lspconf'",
+    },
+    {
+      "jayp0521/mason-null-ls.nvim",
+      config = "require 'miki.configs.mason-null-ls'",
+      after = "null-ls.nvim",
+    },
 
     -- language server protocol configuration and completion
-    "neovim/nvim-lspconfig",
+    {
+      "neovim/nvim-lspconfig",
+      after = "mason-null-ls.nvim",
+      config = "require 'miki.configs.lsp'",
+    },
     {
       "hrsh7th/nvim-cmp",
       requires = {
@@ -27,7 +43,15 @@ return require "packer".startup(function(use)
     },
     "folke/lua-dev.nvim",
     "jose-elias-alvarez/typescript.nvim",
-
+    {
+      "jose-elias-alvarez/null-ls.nvim",
+      after = "mason.nvim",
+      config = "require 'miki.configs.null-ls'",
+    },
+    {
+      "glepnir/lspsaga.nvim",
+      branch = "main",
+    },
     -- colors
     { "catppuccin/nvim", as = "catppuccin" },
     "folke/tokyonight.nvim",
@@ -54,7 +78,7 @@ return require "packer".startup(function(use)
         "nvim-lua/plenary.nvim",
         "kyazdani42/nvim-web-devicons",
         "MunifTanjim/nui.nvim",
-      }
+      },
     },
 
     -- fuzzy finder
@@ -66,14 +90,23 @@ return require "packer".startup(function(use)
         "BurntSushi/ripgrep",
         {
           "nvim-telescope/telescope-fzf-native.nvim",
-          run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
+          run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
         },
         "kyazdani42/nvim-web-devicons",
-      }
+      },
     },
 
     -- auto-complete pair-wise symbols
     "windwp/nvim-autopairs",
     "windwp/nvim-ts-autotag",
-  }
+
+    -- manage multiple terminal windows
+    {
+      "akinsho/toggleterm.nvim",
+      tag = "*",
+      config = function()
+        require("toggleterm").setup()
+      end,
+    },
+  })
 end)

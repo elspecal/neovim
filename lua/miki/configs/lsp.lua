@@ -1,24 +1,24 @@
 local ok_luadev, luadev = pcall(require, "lua-dev")
 if not ok_luadev then
-  print "failed to load lua-dev"
+  print("failed to load lua-dev")
 end
-luadev.setup {}
+luadev.setup({})
 
 local ok_lspconf, lspconf = pcall(require, "lspconfig")
 if not ok_lspconf then
-  print "failed to start lsp configuraiton"
+  print("failed to start lsp configuraiton")
   return
 end
 
 local ok_cmp, cmp = pcall(require, "cmp")
 if not ok_cmp then
-  print "failed to load cmp"
+  print("failed to load cmp")
   return
 end
 
 local ok_cmplsp, cmp_lsp = pcall(require, "cmp_nvim_lsp")
 if not ok_cmplsp then
-  print "failed to load cmp-lsp"
+  print("failed to load cmp-lsp")
   return
 end
 
@@ -36,10 +36,10 @@ local servers = {
     settings = {
       Lua = {
         diagnostics = {
-          globals = { "vim" }
-        }
-      }
-    }
+          globals = { "vim" },
+        },
+      },
+    },
   },
   tsserver = {},
   yamlls = {},
@@ -74,9 +74,9 @@ for server, opts in pairs(servers) do
   if server == "tsserver" then
     local ok_ts, typescript = pcall(require, "typescript")
     if not ok_ts then
-      print "failed to load the typescript plugin"
+      print("failed to load the typescript plugin")
     else
-      typescript.setup { server = opts }
+      typescript.setup({ server = opts })
     end
   else
     lspconf[server].setup(opts)
@@ -85,40 +85,40 @@ end
 
 local ok_luasnip, luasnip = pcall(require, "luasnip")
 if not ok_luasnip then
-  print "failed to load luasnip"
+  print("failed to load luasnip")
   return
 end
 
-require "luasnip.loaders.from_vscode".lazy_load()
+require("luasnip.loaders.from_vscode").lazy_load()
 
 local ok_lspkind, lspkind = pcall(require, "lspkind")
 if not ok_lspkind then
-  print "failed to load the lspkind plugin"
+  print("failed to load the lspkind plugin")
   return
 end
 
 local ok_autopairs, autopairs = pcall(require, "nvim-autopairs.completion.cmp")
 if not ok_autopairs then
-  print "failed to load nvim-autopairs.completion.cmp"
+  print("failed to load nvim-autopairs.completion.cmp")
 else
   cmp.event:on("confirm_done", autopairs.on_confirm_done())
 end
 
-cmp.setup {
+cmp.setup({
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
     end,
   },
-  mapping = cmp.mapping.preset.insert {
-    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete {},
-    ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm {
+  mapping = cmp.mapping.preset.insert({
+    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-Space>"] = cmp.mapping.complete({}),
+    ["<C-e>"] = cmp.mapping.abort(),
+    ["<CR>"] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
-    },
+    }),
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -137,16 +137,16 @@ cmp.setup {
         fallback()
       end
     end, { "i", "s" }),
-  },
-  sources = cmp.config.sources {
+  }),
+  sources = cmp.config.sources({
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
     { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },
     { name = "cmdline" },
-  },
+  }),
   formatting = {
-    format = lspkind.cmp_format { maxwidth = 50 },
+    format = lspkind.cmp_format({ maxwidth = 50 }),
   },
-}
+})
