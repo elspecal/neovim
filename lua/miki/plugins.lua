@@ -111,5 +111,12 @@ return require("packer").startup(function(use)
 
     -- JSON schemas
     "b0o/schemastore.nvim",
+
+    -- git integration
+    "lewis6991/gitsigns.nvim",
+    {
+      "tpope/vim-fugitive",
+      cmd = { "Git", "G" },
+    },
   })
 end)
