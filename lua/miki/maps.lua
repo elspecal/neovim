@@ -13,5 +13,5 @@ map.set("n", "<leader>fg", "<Cmd>Telescope live_grep<CR>", {})
 map.set("n", "<leader>fb", "<Cmd>Telescope buffers<CR>", {})
 map.set("n", "<leader>fh", "<Cmd>Telescope help_tags<CR>", {})
 
-map.set("n", "<leader>t", "<Cmd>ToggleTerm<CR>", {})
+map.set("n", "<leader>tt", "<Cmd>ToggleTerm<CR>", {})
 map.set("t", "kj", [[<C-\><C-n>]], {})
