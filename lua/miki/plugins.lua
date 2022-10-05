@@ -118,5 +118,11 @@ return require("packer").startup(function(use)
       "tpope/vim-fugitive",
       cmd = { "Git", "G" },
     },
+
+    -- comments
+    {
+      "numToStr/Comment.nvim",
+      config = "require 'Comment'.setup {}",
+    },
   })
 end)
