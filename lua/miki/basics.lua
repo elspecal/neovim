@@ -1,14 +1,14 @@
 local g = vim.g
 local o = vim.o
 local opt = vim.opt
-local indent = 2
+local indent = 4
 
 g.mapleader = " "
 
 o.number = true
 o.relativenumber = true
 o.timeoutlen = 400
-opt.clipboard:append { "unnamedplus" }
+opt.clipboard:append({ "unnamedplus" })
 o.termguicolors = true
 opt.completeopt = { "menu", "menuone", "noselect" }
 o.autowriteall = true
@@ -26,6 +26,8 @@ o.smartindent = true
 o.undofile = true
 o.undolevels = 10000
 o.wrap = false
+o.mouse = "a"
+opt.sessionoptions = { "buffers", "options" }
 
 local builtins = {
   "gzip",
