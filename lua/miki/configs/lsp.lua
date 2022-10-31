@@ -24,7 +24,6 @@ end
 
 local servers = {
   cssls = {},
-  eslint = {},
   golangci_lint_ls = {},
   gopls = {},
   html = {},
