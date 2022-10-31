@@ -90,7 +90,7 @@ local on_attach = function(client, bufnr)
 	map("n", "<leader>dp", "<Cmd>Lspsaga diagnostic_jump_prev<CR>", {})
 	map("n", "<leader>dn", "<Cmd>Lspsaga diagnostic_jump_next<CR>", {})
 
-	vim.api.nvim_create_autocmd("CursorHold", {
+	--[[ vim.api.nvim_create_autocmd("CursorHold", {
 		buffer = bufnr,
 		callback = function()
 			local opts = {
@@ -103,7 +103,8 @@ local on_attach = function(client, bufnr)
 			}
 			vim.diagnostic.open_float(nil, opts)
 		end,
-	})
+		command = "Lspsaga show_cursor_diagnostics",
+	}) ]]
 end
 
 local capabilities = cmp_lsp.default_capabilities()
