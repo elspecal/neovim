@@ -55,6 +55,7 @@ return require("packer").startup({ function(use)
     -- colors
     { "catppuccin/nvim", as = "catppuccin" },
     "folke/tokyonight.nvim",
+    "EdenEast/nightfox.nvim",
     "f-person/auto-dark-mode.nvim",
 
     -- indent lines
