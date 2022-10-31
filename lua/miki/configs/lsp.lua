@@ -170,11 +170,34 @@ cmp.setup({
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
     { name = "luasnip" },
-    { name = "buffer" },
+    { name = "buffer", keyword_length = 3 },
     { name = "path" },
-    { name = "cmdline" },
   }),
   formatting = {
-    format = lspkind.cmp_format({ maxwidth = 50 }),
+    format = lspkind.cmp_format({
+      maxwidth = 50,
+      --[[ menu = {
+        buffer = "[buf]",
+        cmdline = "[cmd]",
+        luasnip = "[snip]",
+        nvim_lsp = "[lsp]",
+        nvim_lua = "[lua]",
+        path = "[path]",
+      }, ]]
+    }),
   },
+})
+cmp.setup.cmdline({ "/", "?" }, {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = "buffer" },
+  },
+})
+cmp.setup.cmdline(":", {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = "path" },
+  }, {
+    { name = "cmdline" },
+  }),
 })
