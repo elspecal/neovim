@@ -7,7 +7,7 @@ g.mapleader = " "
 
 o.number = true
 o.relativenumber = true
-o.timeoutlen = 400
+o.timeoutlen = 750
 opt.clipboard:append({ "unnamedplus" })
 o.termguicolors = true
 opt.completeopt = { "menu", "menuone", "noselect" }
@@ -28,6 +28,7 @@ o.undolevels = 10000
 o.wrap = false
 o.mouse = "a"
 opt.sessionoptions = { "buffers", "options" }
+o.updatetime = 1500
 
 local builtins = {
   "gzip",
