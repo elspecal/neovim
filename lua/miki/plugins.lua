@@ -148,6 +148,15 @@ return require("packer").startup({ function(use)
       "echasnovski/mini.nvim",
       config = "require 'mini.surround'.setup()",
     },
+
+    {
+      "iamcco/markdown-preview.nvim",
+      run = "cd app && npm install",
+      setup = function()
+        vim.g.mkdp_filetypes = { "markdown" }
+      end,
+      ft = { "markdown" },
+    },
   })
   end,
   config = { max_jobs = 32 },
