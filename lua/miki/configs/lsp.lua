@@ -1,8 +1,8 @@
-local ok_luadev, luadev = pcall(require, "lua-dev")
+local ok_luadev, neodev = pcall(require, "neodev")
 if not ok_luadev then
   print("failed to load lua-dev")
 end
-luadev.setup({})
+neodev.setup({})
 
 local ok_lspconf, lspconf = pcall(require, "lspconfig")
 if not ok_lspconf then
