@@ -1,4 +1,4 @@
-return require("packer").startup(function(use)
+return require("packer").startup({ function(use)
   use({
     -- plugin manager
     "wbthomason/packer.nvim",
@@ -125,4 +125,6 @@ return require("packer").startup(function(use)
       config = "require 'Comment'.setup {}",
     },
   })
-end)
+  end,
+  config = { max_jobs = 32 },
+})
