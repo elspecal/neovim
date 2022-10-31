@@ -142,6 +142,12 @@ return require("packer").startup({ function(use)
     },
     "theHamsta/nvim-dap-virtual-text",
     "David-Kunz/jester",
+
+    -- tools (like a swiss-knife)
+    {
+      "echasnovski/mini.nvim",
+      config = "require 'mini.surround'.setup()",
+    },
   })
   end,
   config = { max_jobs = 32 },
