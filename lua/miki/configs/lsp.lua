@@ -87,7 +87,7 @@ local on_attach = function(client, _)
   map("n", "<leader>dn", "<Cmd>Lspsaga diagnostic_jump_next<CR>", {})
 end
 
-local capabilities = cmp_lsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = cmp_lsp.default_capabilities()
 local options = {
   on_attach = on_attach,
   capabilities = capabilities,
