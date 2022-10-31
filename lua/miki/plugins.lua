@@ -41,7 +41,7 @@ return require("packer").startup({ function(use)
         "onsails/lspkind.nvim",
       },
     },
-    "folke/lua-dev.nvim",
+    "folke/neodev.nvim",
     "jose-elias-alvarez/typescript.nvim",
     {
       "jose-elias-alvarez/null-ls.nvim",
