@@ -62,13 +62,17 @@ local with_snippet_support = {
   jsonls = true,
 }
 
-local on_attach = function(client, _)
+local format = function()
+  vim.lsp.buf.format({
+    filter = function(_client)
+      return _client.name ~= "tsserver"
+    end,
+  })
+end
+
+local on_attach = function(client, bufnr)
   if client.server_capabilities.documentFormattingProvider then
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      callback = function()
-        vim.lsp.buf.format()
-      end,
-    })
+    vim.api.nvim_create_autocmd("BufWritePre", { callback = format })
   end
 
   local map = vim.keymap.set
@@ -77,7 +81,7 @@ local on_attach = function(client, _)
   map("n", "gd", vim.lsp.buf.definition, {})
   map("n", "gi", vim.lsp.buf.implementation, {})
   map("n", "gr", vim.lsp.buf.references, {})
-  map("n", "<leader>fm", vim.lsp.buf.format, {})
+  map("n", "<leader>fm", format, {})
   map("n", "<leader>fc", "<Cmd>Lspsaga lsp_finder<CR>", {})
   map("n", "<leader>c", "<Cmd>Lspsaga code_action<CR>", {})
   map("n", "<leader>rn", "<Cmd>Lspsaga rename<CR>", {})
@@ -100,6 +104,10 @@ local on_attach = function(client, _)
       vim.diagnostic.open_float(nil, opts)
     end,
   })
+
+  if client.name == "tsserver" then
+    client.server_capabilities.document_formatting = false
+  end
 end
 
 local capabilities = cmp_lsp.default_capabilities()
