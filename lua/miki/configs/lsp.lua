@@ -85,6 +85,21 @@ local on_attach = function(client, _)
   map("n", "<leader>dc", "<Cmd>Lspsaga show_cursor_diagnostics<CR>", {})
   map("n", "<leader>dp", "<Cmd>Lspsaga diagnostic_jump_prev<CR>", {})
   map("n", "<leader>dn", "<Cmd>Lspsaga diagnostic_jump_next<CR>", {})
+
+  vim.api.nvim_create_autocmd("CursorHold", {
+    buffer = bufnr,
+    callback = function()
+      local opts = {
+        focusable = false,
+        close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+        border = "rounded",
+        source = "always",
+        prefix = " ",
+        scope = "cursor",
+      }
+      vim.diagnostic.open_float(nil, opts)
+    end,
+  })
 end
 
 local capabilities = cmp_lsp.default_capabilities()
