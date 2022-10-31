@@ -125,6 +125,23 @@ return require("packer").startup({ function(use)
       "numToStr/Comment.nvim",
       config = "require 'Comment'.setup {}",
     },
+
+    -- debugging
+    {
+      "rcarriga/nvim-dap-ui",
+      requires = "mfussenegger/nvim-dap",
+    },
+    {
+      "microsoft/vscode-js-debug",
+      opt = true,
+      run = "npm install --legacy-peer-deps && npm run compile",
+    },
+    {
+      "mxsdev/nvim-dap-vscode-js",
+      requires = { "mfussenegger/nvim-dap", "microsoft/vscode-js-debug" },
+    },
+    "theHamsta/nvim-dap-virtual-text",
+    "David-Kunz/jester",
   })
   end,
   config = { max_jobs = 32 },
