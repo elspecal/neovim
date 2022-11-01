@@ -30,7 +30,7 @@ local servers = {
 	jsonls = {},
 	prismals = {},
 	pylsp = {},
-	pyright = {},
+	-- pyright = {},
 	sumneko_lua = {
 		settings = {
 			Lua = {
@@ -70,7 +70,7 @@ local format = function()
 	})
 end
 
-local on_attach = function(client, bufnr)
+local on_attach = function(client, _)
 	if client.server_capabilities.documentFormattingProvider then
 		vim.api.nvim_create_autocmd("BufWritePre", { callback = format })
 	end
@@ -78,10 +78,10 @@ local on_attach = function(client, bufnr)
 	local map = vim.keymap.set
 
 	map("n", "gD", vim.lsp.buf.declaration, {})
-	map("n", "gd", vim.lsp.buf.definition, {})
 	map("n", "gi", vim.lsp.buf.implementation, {})
 	map("n", "gr", vim.lsp.buf.references, {})
 	map("n", "<leader>fm", format, {})
+	map("n", "gd", "<Cmd>Lspsaga peek_definition<CR>", {})
 	map("n", "<leader>fc", "<Cmd>Lspsaga lsp_finder<CR>", {})
 	map("n", "<leader>c", "<Cmd>Lspsaga code_action<CR>", {})
 	map("n", "<leader>rn", "<Cmd>Lspsaga rename<CR>", {})
@@ -89,6 +89,7 @@ local on_attach = function(client, bufnr)
 	map("n", "<leader>dc", "<Cmd>Lspsaga show_cursor_diagnostics<CR>", {})
 	map("n", "<leader>dp", "<Cmd>Lspsaga diagnostic_jump_prev<CR>", {})
 	map("n", "<leader>dn", "<Cmd>Lspsaga diagnostic_jump_next<CR>", {})
+	map("n", "K", "<Cmd>Lspsaga hover_doc<CR>", {})
 
 	--[[ vim.api.nvim_create_autocmd("CursorHold", {
 		buffer = bufnr,
@@ -238,7 +239,5 @@ vim.diagnostic.config({
 	update_in_insert = false,
 	underline = true,
 	severity_sort = true,
-	virtual_text = {
-		source = true,
-	},
+	virtual_text = false,
 })
