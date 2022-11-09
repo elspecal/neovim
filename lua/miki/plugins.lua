@@ -155,6 +155,7 @@ return require("packer").startup({
 				end,
 				ft = { "markdown" },
 			},
+			"nvim-lualine/lualine.nvim",
 		})
 	end,
 	config = { max_jobs = 32 },
