@@ -7,6 +7,7 @@ end
 nls.setup({
 	sources = {
 		nls.builtins.code_actions.gitsigns,
+		nls.builtins.code_actions.eslint_d,
 		nls.builtins.diagnostics.eslint_d,
 		nls.builtins.diagnostics.golangci_lint,
 		nls.builtins.diagnostics.mypy.with({ prefer_local = true }),
