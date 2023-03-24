@@ -4,14 +4,16 @@ if not ok then
 	return
 end
 
-saga.init_lsp_saga({
-	border_style = "rounded",
-	code_action_lightbulb = {
+saga.setup({
+	ui = {
+		border = "rounded",
+	},
+	lightbulb = {
 		sign = false,
 	},
-	finder_icons = {
+	--[[ finder_icons = {
 		def = "  ",
 		ref = "諭 ",
 		link = "  ",
-	},
+	}, ]]
 })

@@ -6,19 +6,22 @@ end
 
 nls.setup({
 	sources = {
-		nls.builtins.code_actions.gitsigns,
 		nls.builtins.code_actions.eslint_d,
+		nls.builtins.code_actions.gitsigns,
+		nls.builtins.diagnostics.djlint,
+		nls.builtins.diagnostics.djlint,
 		nls.builtins.diagnostics.eslint_d,
 		nls.builtins.diagnostics.golangci_lint,
-		nls.builtins.diagnostics.mypy.with({ prefer_local = true }),
-		-- nls.builtins.diagnostics.pycodestyle.with({ prefer_local = true }),
-		nls.builtins.diagnostics.pylint.with({ prefer_local = true }),
+		-- nls.builtins.diagnostics.pylint.with({ prefer_local = true }),
+		nls.builtins.diagnostics.flake8,
 		nls.builtins.diagnostics.yamllint,
+		nls.builtins.formatting.beautysh,
+		nls.builtins.formatting.black,
+		nls.builtins.formatting.eslint_d,
 		nls.builtins.formatting.gofumpt,
 		nls.builtins.formatting.goimports,
-		nls.builtins.formatting.eslint_d,
+		nls.builtins.formatting.jq,
 		nls.builtins.formatting.stylua,
-		nls.builtins.formatting.beautysh,
 		nls.builtins.formatting.yamlfmt,
 	},
 })

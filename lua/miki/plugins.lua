@@ -58,6 +58,8 @@ return require("packer").startup({
 			"folke/tokyonight.nvim",
 			"EdenEast/nightfox.nvim",
 			"f-person/auto-dark-mode.nvim",
+			"rebelot/kanagawa.nvim",
+			"sainnhe/everforest",
 
 			-- indent lines
 			"lukas-reineke/indent-blankline.nvim",
@@ -78,7 +80,7 @@ return require("packer").startup({
 				branch = "v2.x",
 				requires = {
 					"nvim-lua/plenary.nvim",
-					"kyazdani42/nvim-web-devicons",
+					"nvim-tree/nvim-web-devicons",
 					"MunifTanjim/nui.nvim",
 				},
 			},
@@ -94,7 +96,7 @@ return require("packer").startup({
 						"nvim-telescope/telescope-fzf-native.nvim",
 						run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
 					},
-					"kyazdani42/nvim-web-devicons",
+					"nvim-tree/nvim-web-devicons",
 				},
 			},
 
@@ -135,7 +137,7 @@ return require("packer").startup({
 			{
 				"microsoft/vscode-js-debug",
 				opt = true,
-				run = "npm install --legacy-peer-deps && npm run compile",
+				run = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out",
 			},
 			{
 				"mxsdev/nvim-dap-vscode-js",

@@ -29,14 +29,16 @@ local servers = {
 	html = {},
 	jsonls = {},
 	prismals = {},
-	pylsp = {},
-	-- pyright = {},
-	sumneko_lua = {
+	-- pylsp = {},
+	pyright = {},
+	lua_ls = {
 		settings = {
 			Lua = {
 				diagnostics = {
 					globals = { "vim" },
 				},
+				workspace = { checkThirdParty = false },
+				completion = { callSnippet = "Replace" },
 			},
 		},
 	},
@@ -65,7 +67,7 @@ local with_snippet_support = {
 local format = function()
 	vim.lsp.buf.format({
 		filter = function(_client)
-			return _client.name == "null-ls"
+			return _client.name == "null-ls" or _client.name == "jsonls"
 		end,
 	})
 end
@@ -77,11 +79,11 @@ local on_attach = function(client, _)
 
 	local map = vim.keymap.set
 
-	map("n", "gD", vim.lsp.buf.declaration, {})
+	map("n", "gD", "<Cmd>Lspsaga peek_definition<CR>", {})
 	map("n", "gi", vim.lsp.buf.implementation, {})
 	map("n", "gr", vim.lsp.buf.references, {})
 	map({ "n", "v" }, "<leader>fm", format, {})
-	map("n", "gd", "<Cmd>Lspsaga peek_definition<CR>", {})
+	map("n", "gd", vim.lsp.buf.definition, {})
 	map("n", "<leader>fc", "<Cmd>Lspsaga lsp_finder<CR>", {})
 	map("n", "<leader>c", "<Cmd>Lspsaga code_action<CR>", {})
 	map("n", "<leader>rn", "<Cmd>Lspsaga rename<CR>", {})
