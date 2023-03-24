@@ -4,7 +4,7 @@ local opt = vim.opt
 local indent = 4
 
 g.mapleader = " "
-g.python3_host_prog = "/Users/mcsepella/projects/HearsayLabs/.venv/bin/python"
+g.python3_host_prog = "$HOME/projects/HearsayLabs/.venv/bin/python"
 
 o.number = true
 o.relativenumber = true
@@ -18,7 +18,13 @@ o.cursorline = true
 o.ignorecase = true
 o.smartcase = true
 o.list = true
-opt.listchars:append({ trail = "-", eol = "↵", tab = "<->", multispace = "·" })
+opt.listchars:append({
+	trail = "-",
+	eol = "↵",
+	tab = "<->",
+	multispace = "·",
+	leadmultispace = "·",
+})
 o.scrolloff = 8
 o.shiftwidth = indent
 o.tabstop = indent
@@ -31,6 +37,9 @@ o.wrap = false
 o.mouse = "a"
 opt.sessionoptions = { "buffers", "options" }
 o.updatetime = 1500
+opt.diffopt:append({ "iwhite" })
+o.splitright = true
+o.splitbelow = true
 
 local builtins = {
 	"gzip",
